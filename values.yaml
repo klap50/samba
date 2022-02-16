@@ -21,22 +21,22 @@ fullnameOverride: ""
 
 samba:
   global:
-    workgroup: FWCC
+    workgroup: WORKGROUP
   share: {}
-  users:
-  - username: klap
-    password: jere911
-  - username: invitado
-    password: invitado
+  users: []
 
 persistence:
-  enabled: enable
-  type: hostPath
-  hostPath:
-    path: /mnt/nas
+  enabled: false
+  type: pvc
+  pvc:
+    accessMode: readWriteOnce
+    size: 8Gi
+    storageClass: "-"
+  other:
+    emptyDir: {}
 
 privatePersistence:
-  enabled: flase
+  enabled: false
   pvc:
     accessMode: readWriteOnce
     size: 20Mi
@@ -48,7 +48,7 @@ livenessProbe:
   enabled: true
 
 service:
-  type: LoadBalancer
+  type: ClusterIP
   port: 445
 
 resources: {}
@@ -62,13 +62,9 @@ resources: {}
   # requests:
   #   cpu: 100m
   #   memory: 128Mi
+
+nodeSelector: {}
+
 tolerations: []
-affinity:
-  nodeAffinity:
-    requiredDuringSchedulingIgnoredDuringExecution:
-      nodeSelectorTerms:
-      - matchExpressions:
-        - key: kubernetes.io/hostname
-          operator: In
-          values:
-          - hellbox
+
+affinity: {}

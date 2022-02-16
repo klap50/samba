@@ -107,30 +107,8 @@ spec:
           secretName: {{ include "samba4.fullname" . }}-users
           defaultMode: 0600
       - name: data
-{{ if .Values.persistence.enabled -}}
-{{ if eq .Values.persistence.type "pvc" }}
-        persistentVolumeClaim:
-          claimName: {{ if .Values.persistence.pvc.existingClaim }}{{ .Values.persistence.pvc.existingClaim }}{{- else }}{{ template "samba4.fullname" . }}-data{{- end }}
-{{ else if eq .Values.persistence.type "flexVolume" }}
-#{{ required "A valid flexVolume block is required when using flexVolume persistence!" .Values.persistence.flexVolume }}
-        flexVolume:
-{{ .Values.persistence.flexVolume | toYaml | indent 10 }}
-{{- else if eq .Values.persistence.type "hostPath" }}
-#{{ required "A valid hostPath.path is required when using hostPath persistence!" .Values.persistence.hostPath.path }}
         hostPath:
-          path: {{ .Values.persistence.hostPath.path }}
-{{ if .Values.persistence.hostPath.type -}}
-          type: {{ .Values.persistence.hostPath.type }}
-{{ end -}}
-{{ else if eq .Values.persistence.type "other" -}}
-#{{ required "A valid other block is required when using flexVolume persistence!" .Values.persistence.other }}
-{{ .Values.persistence.other | toYaml | indent 8 }}
-{{ else -}}
-{{ fail "if persistence is enabled, persistence.type must be one of 'pvc','flexVolume','hostPath' or 'other'!" }}
-{{ end -}}
-{{ else }}
-        emptyDir: {}
-{{ end }}
+          path: /mnt/nas
       - name: private
 {{ if .Values.privatePersistence.enabled -}}
 {{-     $p := .Values.persistence -}}
