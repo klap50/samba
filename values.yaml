@@ -25,7 +25,7 @@ samba:
   share: {}
   users:
   - username: klap
-    password: jere911
+    password: laputamadre
   - username: invitado
     password: invitado
 
