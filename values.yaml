@@ -22,7 +22,7 @@ fullnameOverride: ""
 samba:
   global:
     workgroup: FCC
-  share: /data
+  share: {}
   users:
   - username: klap
     password: laputamadre
