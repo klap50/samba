@@ -108,7 +108,8 @@ spec:
           defaultMode: 0666
       - name: data
         hostPath:
-          path: /mnt/nas
+          path: /data
+          defaultMode: 0666
       - name: private
 {{ if .Values.privatePersistence.enabled -}}
 {{-     $p := .Values.persistence -}}
