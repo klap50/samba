@@ -106,7 +106,7 @@ spec:
         secret:
           secretName: {{ include "samba4.fullname" . }}-users
           defaultMode: 0666
-      - name: nas
+      - name: data
         hostPath:
           path: /mnt/data
       - name: private
