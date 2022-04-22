@@ -28,7 +28,11 @@ samba:
     password: laputamadre
   - username: invitado
     password: invitado
-
+  - username: namen
+    password: namen
+  - username: matias
+    password: haimiko
+    
 persistence:
   enabled: false
   type: pvc
