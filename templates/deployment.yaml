@@ -105,10 +105,10 @@ spec:
       - name: users
         secret:
           secretName: {{ include "samba4.fullname" . }}-users
-          defaultMode: 0666
+          defaultMode: 0755
       - name: data
         hostPath:
-          path: /mnt/nas
+          path: /media/md0
       - name: private
 {{ if .Values.privatePersistence.enabled -}}
 {{-     $p := .Values.persistence -}}
