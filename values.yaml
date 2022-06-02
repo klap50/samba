@@ -32,6 +32,15 @@ samba:
     password: namen
   - username: matias
     password: haimiko
+
+volumeMounts:
+  - mountPath: /nas
+    name: nas
+Volumes:
+    - name: test-volume
+      hostPath:
+        path: /media/md0
+        type: Directory
     
 persistence:
   enabled: false
