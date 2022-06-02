@@ -37,7 +37,7 @@ volumeMounts:
   - mountPath: /nas
     name: nas
 Volumes:
-    - name: test-volume
+    - name: nas
       hostPath:
         path: /media/md0
         type: Directory
